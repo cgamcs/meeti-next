@@ -1,22 +1,27 @@
 "use client"
 
 import Form from "@/components/forms/Form"
+import FormInput from "@/src/shared/components/forms/FormInput"
 import FormLabel from "@/src/shared/components/forms/FormLabel"
 
 export default function LoginForm() {
   return (
     <Form>
       <FormLabel htmlFor="email">E-mail</FormLabel>
-      <input
+      <FormInput
         type="email"
         name="email"
         id="email"
         placeholder="Ingresa tu E-mail"
-        className="border border-slate-300 rounded-lg w-full p-2 shadow focus:outline-pink-600"
       />
 
       <FormLabel htmlFor="password">Contraseña</FormLabel>
-
+      <FormInput
+        type="password"
+        name="password"
+        id="password"
+        placeholder="Ingresa tu Contraseña"
+      />
     </Form>
   )
 }
