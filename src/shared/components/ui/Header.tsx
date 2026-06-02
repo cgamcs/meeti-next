@@ -1,5 +1,6 @@
 import Link from "next/link"
 import Logo from "./Logo"
+import GuestNavigation from "./GuestNavigation"
 
 export default function Header() {
   return (
@@ -12,6 +13,8 @@ export default function Header() {
             </div>
           </Link>
         </div>
+
+        <GuestNavigation />
       </div>
     </header>
   )
