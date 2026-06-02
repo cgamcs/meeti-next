@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { Form, FormLabel, FormInput, FormSubmit, FormError } from "@/components/forms"
 import { SignUpInput, SignUpSchema } from "../schemas/authSchema"
+import { signUpAction } from "../actions/auth-actions"
 
 export default function RegisterForm() {
   const { register, handleSubmit, formState: { errors } } = useForm({
@@ -11,8 +12,8 @@ export default function RegisterForm() {
     mode: 'onChange'
   })
 
-  const onSubmit = (data: SignUpInput) => {
-    console.log(data)
+  const onSubmit = async (data: SignUpInput) => {
+    await signUpAction(data)
   }
 
   return (
