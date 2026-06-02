@@ -12,4 +12,7 @@ export const SignUpSchema = BaseAuthSchema.pick({
   email: true, 
   password: true,
   passwordConfirmation: true
+}).refine((data) => data.password === data.passwordConfirmation, {
+  error: "Las contraseñas son diferentes",
+  path: ['passwordConfirmation']
 })
