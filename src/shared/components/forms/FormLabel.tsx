@@ -1,6 +1,11 @@
+import { LabelHTMLAttributes } from "react"
 
-export default function FormLabel() {
+type FormLabelProps = LabelHTMLAttributes<HTMLLabelElement>
+
+export default function FormLabel(props: FormLabelProps) {
   return (
-    <div>FormLabel</div>
+    <label {...props} className="block text-slate-600 font-medium">
+      {props.children}
+    </label>
   )
 }
