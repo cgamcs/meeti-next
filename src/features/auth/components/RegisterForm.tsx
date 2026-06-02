@@ -2,12 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Form, FormLabel, FormInput, FormSubmit } from "@/components/forms"
+import { Form, FormLabel, FormInput, FormSubmit, FormError } from "@/components/forms"
 import { SignUpSchema } from "../schemas/authSchema"
 
 export default function RegisterForm() {
   const { register, handleSubmit, formState: { errors } } = useForm({
-    resolver: zodResolver(SignUpSchema)
+    resolver: zodResolver(SignUpSchema),
+    mode: 'onChange'
   })
 
   const onSubmit = () => {
@@ -21,8 +22,9 @@ export default function RegisterForm() {
         type="text"
         id="name"
         placeholder="Ingresa tu Nombre"
-        {...register('email')}
+        {...register('name')}
       />
+      {errors.name && <FormError>{errors.name.message}</FormError>}
 
       <FormLabel htmlFor="email">E-mail</FormLabel>
       <FormInput
@@ -31,6 +33,7 @@ export default function RegisterForm() {
         placeholder="Ingresa tu E-mail"
         {...register('email')}
       />
+      {errors.email && <FormError>{errors.email.message}</FormError>}
 
       <FormLabel htmlFor="password">Contraseña</FormLabel>
       <FormInput
@@ -39,6 +42,7 @@ export default function RegisterForm() {
         placeholder="Contraseña - Min. 8 Caracteres"
         {...register('password')}
       />
+      {errors.password && <FormError>{errors.password.message}</FormError>}
 
       <FormLabel htmlFor="password_confirmation">Repetir Contraseña</FormLabel>
       <FormInput
@@ -47,6 +51,7 @@ export default function RegisterForm() {
         placeholder="Repetir tu Contraseña"
         {...register('passwordConfirmation')}
       />
+      {errors.passwordConfirmation && <FormError>{errors.passwordConfirmation.message}</FormError>}
 
       <FormSubmit value="Registrarme" />
     </Form>
