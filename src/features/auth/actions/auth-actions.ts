@@ -1,7 +1,16 @@
 "use server"
 
-import { SignUpInput } from "../schemas/authSchema"
+import { SignUpInput, SignUpSchema } from "../schemas/authSchema"
 
 export async function signUpAction(input: SignUpInput) {
-  console.log(input)
+  const data = SignUpSchema.safeParse(input)
+
+  if (!data.success) {
+    return {
+      error: 'Hubo un error',
+      suscces: ''
+    }
+  }
+  
+  console.log(data.success)
 }
