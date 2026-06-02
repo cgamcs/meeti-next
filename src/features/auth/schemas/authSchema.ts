@@ -1,10 +1,10 @@
 import z from "zod"
 
 export const BaseAuthSchema = z.object({
-  name: z.string().min(1, {error: "El nombre es obligatorio"}),
+  name: z.string().trim().min(1, {error: "El nombre es obligatorio"}),
   email: z.email({error: "El email es obligatorio"}),
-  password: z.string().min(8, {error: "La contraseña debe ser mínimo de 8 caracters"}),
-  passwordConfirmation: z.string().min(1, {error: "La contraseña de confirmación no debe de ir vacío"})
+  password: z.string().trim().min(8, {error: "La contraseña debe ser mínimo de 8 caracters"}),
+  passwordConfirmation: z.string().trim().min(1, {error: "La contraseña de confirmación no debe de ir vacío"})
 })
 
 export const SignUpSchema = BaseAuthSchema.pick({
@@ -16,3 +16,5 @@ export const SignUpSchema = BaseAuthSchema.pick({
   error: "Las contraseñas son diferentes",
   path: ['passwordConfirmation']
 })
+
+export type SignUpInput = z.infer<typeof SignUpSchema>
