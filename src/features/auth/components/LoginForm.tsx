@@ -1,9 +1,6 @@
 "use client"
 
-import Form from "@/components/forms/Form"
-import FormInput from "@/src/shared/components/forms/FormInput"
-import FormLabel from "@/src/shared/components/forms/FormLabel"
-import FormSubmit from "@/src/shared/components/forms/FormSubmit"
+import { Form, FormLabel, FormInput, FormSubmit } from "@/components/forms"
 
 export default function LoginForm() {
   return (
