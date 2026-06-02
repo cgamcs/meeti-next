@@ -1,4 +1,5 @@
 import { Metadata } from "next"
+import Hero from "@/components/ui/Hero"
 
 export const metadata : Metadata = {
   title: "Meeti - Inicio"
@@ -7,7 +8,7 @@ export const metadata : Metadata = {
 export default function Home() {
   return (
     <>
-      <h1>Inicio</h1>
+      <Hero />
     </>
   )
 }
