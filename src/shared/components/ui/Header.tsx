@@ -12,7 +12,6 @@ export default function Header() {
             </div>
           </Link>
         </div>
-        {/* TODO: Navegación Aquí */}
       </div>
     </header>
   )
