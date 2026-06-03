@@ -16,7 +16,7 @@ export default function RegisterForm() {
   const onSubmit = async (data: SignUpInput) => {
     const { error, success } = await signUpAction(data)
 
-    error && toast.success(error)
+    error && toast.error(error)
     
     if (success) {
       toast.success(success)
