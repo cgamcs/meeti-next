@@ -17,6 +17,11 @@ class AuthService {
         password
       }
     })
+
+    return {
+      error: '',
+      success: 'Cuenta creada, revisa tu e-mail'
+    }
   }
 }
 

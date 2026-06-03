@@ -9,9 +9,10 @@ export async function signUpAction(input: SignUpInput) {
   if (!data.success) {
     return {
       error: 'Hubo un error',
-      suscces: ''
+      success: ''
     }
   }
 
-  await authService.register(data.data)
+  const response = await authService.register(data.data)
+  return response
 }
