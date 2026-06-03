@@ -28,5 +28,6 @@ export async function signInAction(input: SignInInput) {
     }
   }
 
-  
+  const response = await authService.login(data.data)
+  return response
 }
