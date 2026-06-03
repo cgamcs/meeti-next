@@ -66,7 +66,8 @@ class AuthService {
     } catch (error) {
       if (error instanceof APIError) {
         const messages : Record<number, string> = {
-          401: 'Contraseña incorrecta'
+          401: 'Contraseña incorrecta',
+          403: 'Cuenta no confirmada, revisa tu e-mail'
         }
 
         const errorMessage = messages[error.statusCode]
