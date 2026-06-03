@@ -65,8 +65,18 @@ class AuthService {
       }
     } catch (error) {
       if (error instanceof APIError) {
-        console.log(error.statusCode)
-        console.log(error.message)
+        const messages : Record<number, string> = {
+          401: 'Contraseña incorrecta'
+        }
+
+        const errorMessage = messages[error.statusCode]
+        
+        if (errorMessage) {
+          return {
+            error: errorMessage,
+            success: ''
+          }
+        }
       }
     }
 
