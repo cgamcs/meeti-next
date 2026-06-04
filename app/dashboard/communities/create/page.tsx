@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { generatePageTitle } from "@/src/shared/utils/metadata"
 import Heading from "@/src/shared/components/typography/Heading"
 import Link from "next/link"
+import CreateCommunity from "@/src/features/communities/Components/CreateCommunity"
 
 const title = 'Crear comunidad'
 
@@ -18,6 +19,8 @@ export default function CreateCommunityPage() {
         href="/dashboard/communities" 
         className="mt-5 block lg:inline-block text-center bg-orange-500 hover:bg-orange-600 transition-colors text-xs lg:text-lg text-white py-2 px-8 rounded-lg font-bold"
       >Volver a mis Comunidades</Link>
+
+      <CreateCommunity />
     </>
   )
 }
