@@ -2,6 +2,7 @@
 
 import { requireAuth } from "@/src/lib/auth-server"
 import { CommunityInput, CommunitySchema } from "../schemas/communitySchema"
+import { communityService } from "../services/CommunityService"
 
 export async function createCommunityAction(input: CommunityInput) {
   const data = CommunitySchema.safeParse(input)
@@ -19,4 +20,6 @@ export async function createCommunityAction(input: CommunityInput) {
       success: ''
     }
   }
+
+  await communityService.createCommunity(data.data, session.user.id)
 }
