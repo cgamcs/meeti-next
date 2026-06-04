@@ -26,6 +26,7 @@ export default function SetPasswordForm() {
 
     if (success) {
       toast.success(success)
+      redirect('/auth/login')
     }
   }
 

@@ -54,11 +54,6 @@ export async function setPasswordAction(input: SetPasswordInput, token: string) 
     }
   }
 
-  console.log(data.data)
-  console.log(token)
-
-  return {
-    error: '',
-    success: ''
-  }
+  const response = await authService.setNewPassword(data.data, token)
+  return response
 }
