@@ -3,8 +3,9 @@
 import { Form, FormSubmit } from "@/src/shared/components/forms"
 import CommunityForm from "./CommunityForm"
 import { FormProvider, useForm } from "react-hook-form"
-import { CommunitySchema } from "../schemas/communitySchema"
+import { CommunityInput, CommunitySchema } from "../schemas/communitySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
+import { createCommunityAction } from "../actions/community-actions"
 
 export default function CreateCommunity() {
   const methods = useForm({
@@ -16,9 +17,13 @@ export default function CreateCommunity() {
     }
   })
 
+  const onSubmit = async (data: CommunityInput) => {
+    await createCommunityAction(data)
+  }
+
   return (
     <FormProvider {...methods}>
-      <Form>
+      <Form onSubmit={methods.handleSubmit(onSubmit)}>
         <CommunityForm />
 
         <FormSubmit value={"Crear Comunidad"} />
