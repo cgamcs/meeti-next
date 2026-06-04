@@ -108,7 +108,7 @@ class AuthService {
 
     return {
       error: '',
-      success: ''
+      success: 'Hemos enviado un e-mail con instrucciones'
     }
   }
 }
