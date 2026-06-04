@@ -90,13 +90,21 @@ class AuthService {
   }
 
   async requestPasswordReset(input: ForgotPasswordInput) {
-    const user = await this.authRepository.userExists(input.email)
+    const { email } = input
+
+    const user = await this.authRepository.userExists(email)
     if (!user) {
       return {
         error: 'El usuario no existe',
         success: ''
       }
     }
+
+    await auth.api.requestPasswordReset({
+      body: {
+        email
+      }
+    })
 
     return {
       error: '',
