@@ -39,3 +39,4 @@ export const SetPasswordSchema = BaseAuthSchema.pick({
 export type SignUpInput = z.infer<typeof SignUpSchema>
 export type SignInInput = z.infer<typeof SignInSchema>
 export type ForgotPasswordInput = z.infer<typeof ForgotPasswordSchema>
+export type SetPasswordInput = z.infer<typeof SetPasswordSchema>
