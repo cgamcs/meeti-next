@@ -9,7 +9,7 @@ import { createCommunityAction } from "../actions/community-actions"
 import toast from "react-hot-toast"
 import { redirect } from "next/navigation"
 
-export default function CreateCommunity() {
+export default function EditCommunity() {
   const methods = useForm({
     resolver: zodResolver(CommunitySchema),
     mode: 'all',
@@ -36,7 +36,7 @@ export default function CreateCommunity() {
       <Form onSubmit={methods.handleSubmit(onSubmit)}>
         <CommunityForm />
 
-        <FormSubmit value={"Crear Comunidad"} />
+        <FormSubmit value={"Guardar Cambios"} />
       </Form>
     </FormProvider>
   )

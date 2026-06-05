@@ -1,3 +1,4 @@
+import EditCommunity from '@/src/features/communities/components/EditCommunity'
 import { communityService } from '@/src/features/communities/services/CommunityService'
 import { requireAuth } from '@/src/lib/auth-server'
 import Heading from '@/src/shared/components/typography/Heading'
@@ -14,6 +15,8 @@ export default async function EditCommunityPage(props: PageProps<'/dashboard/com
   return (
     <>
       <Heading>Editar Comunidad</Heading>
+
+      <EditCommunity />
     </>
   )
 }
