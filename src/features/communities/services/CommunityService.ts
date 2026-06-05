@@ -1,5 +1,6 @@
 import { User } from "../../auth/types";
 import { CommunityPolicy } from "../policies/CommunityPolicy";
+import { MembershipPolicy } from "../policies/MembershipPolicy";
 import { CommunityInput } from "../schemas/communitySchema";
 import { communityRepository, ICommunityRepository } from "./CommunityRepository";
 
@@ -24,11 +25,18 @@ class CommunityService {
       
       return {
         data: community,
-        context: {isMember, isAdmin}
+        context: {isMember, isAdmin},
+        permissions: {
+          canEdit: CommunityPolicy.canEdit(user, community),
+          canDelete: CommunityPolicy.canDelete(user, community),
+          canJoin: MembershipPolicy.canJoin(user, community, isMember),
+          canLeave: MembershipPolicy.canLeave(user, community, isMember),
+          canViewMembers: CommunityPolicy.canViewMembers(user, community)
+        }
       }
     }))
 
-    console.log(enriched)
+    return enriched
   }
 }
 
