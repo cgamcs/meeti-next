@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { generatePageTitle } from "@/src/shared/utils/metadata"
 import Heading from "@/src/shared/components/typography/Heading"
 import Link from "next/link"
-import CreateCommunity from "@/src/features/communities/Components/CreateCommunity"
+import CreateCommunity from "@/src/features/communities/components/CreateCommunity"
 import { requireAuth } from "@/src/lib/auth-server"
 import { redirect } from "next/navigation"
 

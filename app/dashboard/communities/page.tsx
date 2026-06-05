@@ -2,7 +2,7 @@ import { Metadata } from "next"
 import { generatePageTitle } from "@/src/shared/utils/metadata"
 import Heading from "@/src/shared/components/typography/Heading"
 import Link from "next/link"
-import MyCommunities from "@/src/features/communities/Components/MyCommunities"
+import MyCommunities from "@/src/features/communities/components/MyCommunities"
 
 const title = 'Administra tus comunidades'
 
