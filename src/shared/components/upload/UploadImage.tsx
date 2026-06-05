@@ -2,8 +2,12 @@ import { UploadDropzone } from "@/src/shared/utils/uploadthing"
 import { twMerge } from "tailwind-merge"
 import Image from "next/image"
 import { useState } from "react"
+import { useFormContext } from "react-hook-form"
+import { CommunityInput } from "@/src/features/communities/schemas/communitySchema"
+import { FormError } from "../forms"
 
 export default function UploadImage() {
+  const { formState: { errors}, setValue } = useFormContext<CommunityInput>()
   const [uploadedFile, setUploadedFile] = useState('')
 
   return (
@@ -12,6 +16,7 @@ export default function UploadImage() {
         endpoint={'meetiUploader'}
         onClientUploadComplete={(res) => {
           setUploadedFile(res[0].ufsUrl)
+          setValue('image', res[0].ufsUrl, {shouldValidate: true})
         }}
         className="ut-button:bg-orange-500 hover:ut-button:bg-orange-700"
         appearance={{
@@ -29,6 +34,8 @@ export default function UploadImage() {
           mode: 'auto'
         }}
       />
+
+      {errors.image && <FormError>{errors.image.message}</FormError>}
 
       {uploadedFile && (
         <>
