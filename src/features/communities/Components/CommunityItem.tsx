@@ -1,6 +1,7 @@
 import Image from "next/image"
 import { CommunityWithPermissions } from "../types/community.types"
 import Link from "next/link"
+import CommunityDropdownMenu from "./CommunityDropdownMenu"
 
 type CommunityItemProps = {
   community: CommunityWithPermissions
@@ -30,7 +31,10 @@ export default function CommunityItem({community} : CommunityItemProps) {
         </div>
       </div>
       <div className="flex shrink-0 items-center gap-x-6">
-        {/* DROPDOWN MENU */}
+        {community.context.isAdmin && 
+        <CommunityDropdownMenu
+          community={community.data}
+        />}
       </div>
     </li>
   )
