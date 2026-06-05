@@ -1,4 +1,5 @@
 import { User } from "../../auth/types";
+import { CommunityPolicy } from "../policies/CommunityPolicy";
 import { CommunityInput } from "../schemas/communitySchema";
 import { communityRepository, ICommunityRepository } from "./CommunityRepository";
 
@@ -17,7 +18,17 @@ class CommunityService {
 
   async getUserCommunities(user: User) {
     const communities = await this.communityRepository.findByUser(user.id)
-    console.log(communities)
+    const enriched = await Promise.all(communities.map(async (community) => {
+      const isMember = true
+      const isAdmin = CommunityPolicy.isAdmin(user, community)
+      
+      return {
+        data: community,
+        context: {isMember, isAdmin}
+      }
+    }))
+
+    console.log(enriched)
   }
 }
 
