@@ -1,6 +1,8 @@
 import { requireAuth } from '@/src/lib/auth-server'
 import { redirect } from 'next/navigation'
 import { communityService } from '../services/CommunityService'
+import Link from 'next/link'
+import CommunityItem from './CommunityItem'
 
 export default async function MyCommunities() {
   const { session } = await requireAuth()
@@ -9,6 +11,27 @@ export default async function MyCommunities() {
   const communities = await communityService.getUserCommunities(session.user)
 
   return (
-    <div>MyCommunities</div>
+    <>
+      {communities.length ? (
+        <ul role='list' className='mt-10 border border-gray-200 shadow-md rounded-xl p-10 divide-y divide-gray-100'>
+          {communities.map(community => (
+            <CommunityItem
+              key={community.data.id}
+              community={community}
+            />
+          ))}
+        </ul>
+      ) : (
+        <p className='text-center mt-10 text-lg'>
+          No hay comunidades aún {''}
+          
+          <Link
+            href={'/dashboard/communities/create'}
+            className='text-orange-500 font-bold'
+          >Comienza creando una</Link>
+        </p>
+      )}
+    
+    </>
   )
 }
