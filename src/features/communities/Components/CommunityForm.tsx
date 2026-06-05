@@ -3,6 +3,7 @@ import FormTextArea from "@/src/shared/components/forms/FormTextArea"
 import { useFormContext } from "react-hook-form"
 import { CommunityInput } from "../schemas/communitySchema"
 import { UploadDropzone } from "@/src/shared/utils/uploadthing"
+import { twMerge } from "tailwind-merge"
 
 export default function CommunityForm() {
   const { register, formState: { errors } } = useFormContext<CommunityInput>()
@@ -20,6 +21,20 @@ export default function CommunityForm() {
 
       <UploadDropzone
         endpoint={'meetiUploader'}
+        className="ut-button:bg-orange-500 hover:ut-button:bg-orange-700"
+        appearance={{
+          button: "font-bold py-2 block h-auto after:bg-orange-300 after:h-2 after:top-0",
+          label: "text-sm text-gray-600 hover:text-gray-600",
+          allowedContent: "text-sm"
+        }}
+        content={{
+          button: "Selecciona una Imágen",
+          label: "Elige un archivo o arrástralo aquí",
+          allowedContent: "Máximo 1 archivo, 1MB"
+        }}
+        config={{
+          cn: twMerge
+        }}
       />
 
       <FormLabel
