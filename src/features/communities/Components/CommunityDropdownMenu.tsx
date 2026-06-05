@@ -30,7 +30,7 @@ export default function CommunityDropdownMenu({community}: Props) {
         </MenuItem>
         <MenuItem>
           <a
-            href={``}
+            href={`/dashboard/communities/${community.id}/edit`}
             className="block px-3 py-1 text-sm/6 text-gray-900 data-focus:bg-gray-50 data-focus:outline-hidden dark:text-white dark:data-focus:bg-white/5"
           >
             Editar <span className="sr-only">, {community.name}</span>
