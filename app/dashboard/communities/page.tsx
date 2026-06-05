@@ -2,6 +2,7 @@ import { Metadata } from "next"
 import { generatePageTitle } from "@/src/shared/utils/metadata"
 import Heading from "@/src/shared/components/typography/Heading"
 import Link from "next/link"
+import MyCommunities from "@/src/features/communities/Components/MyCommunities"
 
 const title = 'Administra tus comunidades'
 
@@ -24,6 +25,8 @@ export default function CommunitiesPage() {
           className="mt-5 block lg:inline-block text-center bg-pink-500 hover:bg-pink-600 transition-colors text-xs lg:text-lg text-white py-2 px-8 rounded-lg font-bold"
         >Comunidades a las que te uniste</Link>
       </div>
+
+      <MyCommunities />
     </>
   )
 }

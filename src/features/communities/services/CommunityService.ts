@@ -1,3 +1,4 @@
+import { User } from "../../auth/types";
 import { CommunityInput } from "../schemas/communitySchema";
 import { communityRepository, ICommunityRepository } from "./CommunityRepository";
 
@@ -12,6 +13,10 @@ class CommunityService {
       createdBy: userId
     })
     return community
+  }
+
+  async getUserCommunities(user: User) {
+    console.log(user)
   }
 }
 
