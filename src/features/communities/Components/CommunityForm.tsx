@@ -18,7 +18,9 @@ export default function CommunityForm() {
       />
       {errors.name && <FormError>{errors.name.message}</FormError>}
 
-      <UploadDropzone />
+      <UploadDropzone
+        endpoint={'meetiUploader'}
+      />
 
       <FormLabel
         htmlFor="description">Descripción Comunidad</FormLabel>
