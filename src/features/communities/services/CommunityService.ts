@@ -45,6 +45,24 @@ class CommunityService {
     if (!community) notFound()
     return community
   }
+
+  async getCommunityDetails(communityId: string, user: User) {
+    const community = await this.getCommunity(communityId)
+    const isMember = false
+    const isAdmin = CommunityPolicy.isAdmin(user, community)
+
+    return {
+      data: community,
+      context: {isMember, isAdmin},
+      permissions: {
+        canEdit: CommunityPolicy.canEdit(user, community),
+        canDelete: CommunityPolicy.canDelete(user, community),
+        canJoin: MembershipPolicy.canJoin(user, community, isMember),
+        canLeave: MembershipPolicy.canLeave(user, community, isMember),
+        canViewMembers: CommunityPolicy.canViewMembers(user, community)
+      }
+    }
+  }
 }
 
 export const communityService = new CommunityService(communityRepository)
