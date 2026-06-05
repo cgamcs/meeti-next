@@ -9,7 +9,15 @@ const nextConfig: NextConfig = {
       ],
     },
   },
-  typedRoutes: true
+  typedRoutes: true,
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "wdk1qql7kw.ufs.sh"
+      }
+    ]
+  }
 };
 
 export default nextConfig;
