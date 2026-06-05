@@ -16,7 +16,8 @@ class CommunityService {
   }
 
   async getUserCommunities(user: User) {
-    console.log(user)
+    const communities = await this.communityRepository.findByUser(user.id)
+    console.log(communities)
   }
 }
 
