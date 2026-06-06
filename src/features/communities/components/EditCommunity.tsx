@@ -5,35 +5,32 @@ import CommunityForm from "./CommunityForm"
 import { FormProvider, useForm } from "react-hook-form"
 import { CommunityInput, CommunitySchema } from "../schemas/communitySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
-import { createCommunityAction } from "../actions/community-actions"
-import toast from "react-hot-toast"
-import { redirect } from "next/navigation"
+import { SelectCommunity } from "../types/community.types"
 
-export default function EditCommunity() {
+type Props = {
+  community: SelectCommunity
+}
+
+export default function EditCommunity({community} : Props) {
+  const { name, description, image } = community
+
   const methods = useForm({
     resolver: zodResolver(CommunitySchema),
     mode: 'all',
     defaultValues: {
-      name: '',
-      description: '',
-      image: ''
+      name,
+      description,
+      image
     }
   })
 
-  const onSubmit = async (data: CommunityInput) => {
-    const { error, success } = await createCommunityAction(data)
-
-    error && toast.error(error)
-
-    if (success) {
-      toast.success(success)
-      redirect('/dashboard/communities')
-    }
+  const onSumbit = async (data: CommunityInput) => {
+    console.log(data)
   }
 
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={methods.handleSubmit(onSubmit)}>
+      <Form onSubmit={methods.handleSubmit(onSumbit)}>
         <CommunityForm />
 
         <FormSubmit value={"Guardar Cambios"} />

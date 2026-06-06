@@ -7,15 +7,16 @@ import { CommunityInput } from "@/src/features/communities/schemas/communitySche
 import { FormError } from "../forms"
 
 export default function UploadImage() {
-  const { formState: { errors}, setValue } = useFormContext<CommunityInput>()
-  const [uploadedFile, setUploadedFile] = useState('')
+  const { formState: { errors}, setValue, getValues } = useFormContext<CommunityInput>()
+  const [uploadedImage, setUploadedImage] = useState('')
+  const currentImage = getValues('image') ? getValues('image') : null
 
   return (
     <>
       <UploadDropzone
         endpoint={'meetiUploader'}
         onClientUploadComplete={(res) => {
-          setUploadedFile(res[0].ufsUrl)
+          setUploadedImage(res[0].ufsUrl)
           setValue('image', res[0].ufsUrl, {shouldValidate: true})
         }}
         className="ut-button:bg-orange-500 hover:ut-button:bg-orange-700"
@@ -37,11 +38,23 @@ export default function UploadImage() {
 
       {errors.image && <FormError>{errors.image.message}</FormError>}
 
-      {uploadedFile && (
+      {uploadedImage && (
         <>
           <p>Imagen Nueva:</p>
           <Image
-            src={uploadedFile}
+            src={uploadedImage}
+            alt="Imagen publica"
+            height={200}
+            width={300}
+          />
+        </>
+      )}
+
+      {currentImage && !uploadedImage && (
+        <>
+          <p>Imagen Actual:</p>
+          <Image
+            src={currentImage}
             alt="Imagen publica"
             height={200}
             width={300}
