@@ -64,8 +64,15 @@ class CommunityService {
     }
   }
 
-  async updateCommunity() {
-    console.log('desde update community')
+  async updateCommunity(data: CommunityInput, communityId: string, user: User) {
+    const community = await this.getCommunity(communityId)
+    if (!community) notFound()
+    
+    if (!CommunityPolicy.canEdit(user, community)) {
+      throw new Error('No tienes permisos para actualizar esta comunidad')
+    }
+
+    await this.communityRepository.update(data, communityId)
   }
 }
 

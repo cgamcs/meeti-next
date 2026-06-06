@@ -7,6 +7,8 @@ import { CommunityInput, CommunitySchema } from "../schemas/communitySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SelectCommunity } from "../types/community.types"
 import { editCommunityAction } from "../actions/community-actions"
+import toast from "react-hot-toast"
+import { redirect } from "next/navigation"
 
 type Props = {
   community: SelectCommunity
@@ -26,7 +28,14 @@ export default function EditCommunity({community} : Props) {
   })
 
   const onSumbit = async (data: CommunityInput) => {
-    await editCommunityAction(data, id)
+    const { error, success } = await editCommunityAction(data, id)
+
+    error && toast.error(error)
+
+    if (success) {
+      toast.success(success)
+      redirect('/dashboard/communities')
+    }
   }
 
   return (

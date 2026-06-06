@@ -46,5 +46,10 @@ export async function editCommunityAction(input: CommunityInput, id: string) {
     }
   }
 
-  await communityService.updateCommunity()
+  await communityService.updateCommunity(data.data, id, session.user)
+
+  return {
+    success: 'Comunidad actualizada',
+    error: ''
+  }
 }
