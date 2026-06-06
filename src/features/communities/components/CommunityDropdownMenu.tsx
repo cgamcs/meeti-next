@@ -2,12 +2,14 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/react"
 import { EllipsisVerticalIcon } from "@heroicons/react/24/outline"
 import { SelectCommunity } from "../types/community.types"
+import { useCommunityStore } from "../stores/community.store"
 
 type Props = {
   community: SelectCommunity
 }
 
 export default function CommunityDropdownMenu({community}: Props) {
+  const { setOpen } = useCommunityStore()
 
   return (
     <Menu as="div" className="relative flex-none">
@@ -39,7 +41,7 @@ export default function CommunityDropdownMenu({community}: Props) {
         <MenuItem>
           <button
             type="button"
-            onClick={() => {}}
+            onClick={() => setOpen(true)}
             className="block text-left w-full px-3 py-1 text-sm/6 text-red-600 data-focus:bg-gray-50 data-focus:outline-hidden cursor-pointer"
           >
             Eliminar<span className="sr-only">, {community.name}</span>

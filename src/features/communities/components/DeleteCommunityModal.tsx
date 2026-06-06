@@ -5,11 +5,11 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useCommunityStore } from '../stores/community.store'
 
 export default function DeleteCommunityModal() {
-  const { open } = useCommunityStore()
+  const { open, setOpen } = useCommunityStore()
 
   return (
     <div>
-      <Dialog open={open} onClose={() => {}} className="relative z-50">
+      <Dialog open={open} onClose={() => setOpen(false)} className="relative z-50">
         <DialogBackdrop
           transition
           className="fixed inset-0 bg-gray-800/75 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50"
