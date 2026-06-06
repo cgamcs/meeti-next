@@ -42,7 +42,7 @@ export default function DeleteCommunityForm() {
       <input
         type='submit'
         value="Eliminar Comunidad"
-        className="inline-flex w-full justify-center rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:w-auto dark:bg-red-500 dark:hover:bg-red-400"
+        className="inline-flex w-full justify-center rounded-lg bg-red-600 px-3 py-2 text-sm font-semibold text-white shadow-xs hover:bg-red-500 sm:w-auto"
       />
        
       <button
@@ -52,7 +52,7 @@ export default function DeleteCommunityForm() {
           setOpen(false)
           setCommunity(null)
         }}
-        className="mt-3 inline-flex w-full justify-center border border-slate-100 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto dark:bg-white/10 dark:text-white dark:inset-ring-white/5 dark:hover:bg-white/20"
+        className="mt-3 inline-flex w-full justify-center border border-slate-100 rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-xs inset-ring-1 inset-ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:ml-3 sm:w-auto"
       >
         Cancelar
       </button>

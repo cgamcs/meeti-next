@@ -5,7 +5,7 @@ function NotificationCount() {
   
   return (
     <a
-      className="relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 dark:hover:text-white"
+      className="relative rounded-full p-1 text-gray-400 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
     >
       <span className="sr-only">View notifications</span>
       <BellIcon aria-hidden="true" className="size-6" />
