@@ -3,6 +3,7 @@
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 import { useCommunityStore } from '../stores/community.store'
+import DeleteCommunityForm from './DeleteCommunityForm'
 
 export default function DeleteCommunityModal() {
   const { open, setOpen, community, setCommunity } = useCommunityStore()
@@ -40,7 +41,7 @@ export default function DeleteCommunityModal() {
                       ¿Confirmas que deseas eliminar la Comunidad? Una comunidad eliminada no se puede recuperar.
                     </p>
 
-                    {/* Form aquí */}
+                    <DeleteCommunityForm />
                   </div>
                 </div>
               </div>

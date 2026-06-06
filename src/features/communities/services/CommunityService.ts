@@ -4,6 +4,10 @@ import { CommunityPolicy } from "../policies/CommunityPolicy";
 import { MembershipPolicy } from "../policies/MembershipPolicy";
 import { CommunityInput } from "../schemas/communitySchema";
 import { communityRepository, ICommunityRepository } from "./CommunityRepository";
+import { auth } from "@/src/lib/auth";
+import { headers } from "next/headers";
+import { success } from "zod";
+import { deleteUTFiles } from "@/src/lib/uploadthing-server";
 
 class CommunityService {
   constructor(
@@ -73,6 +77,36 @@ class CommunityService {
     }
 
     await this.communityRepository.update(data, communityId)
+  }
+
+  async deleteCommunity(communityId: string, password: string, user: User) {
+    const community = await this.getCommunity(communityId)
+
+    if (!CommunityPolicy.canDelete(user, community)) {
+      throw new Error('No tienes permisos para eliminar esta comunidad')
+    }
+
+    try {
+      await auth.api.verifyPassword({
+        body: { password },
+        headers: await headers()
+      })
+    } catch (error: any) {
+      if (error.body && error.body.code === 'INVALID_PASSWORD'){
+        return {
+          error: 'Contraseña incorrecta',
+          success: ''
+        }
+      }
+    }
+
+    await this.communityRepository.delete(communityId)
+    await deleteUTFiles(community.image)
+
+    return {
+      error: '',
+      success: 'Comunidad eliminada'
+    }
   }
 }
 
