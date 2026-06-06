@@ -6,13 +6,14 @@ import { FormProvider, useForm } from "react-hook-form"
 import { CommunityInput, CommunitySchema } from "../schemas/communitySchema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { SelectCommunity } from "../types/community.types"
+import { editCommunityAction } from "../actions/community-actions"
 
 type Props = {
   community: SelectCommunity
 }
 
 export default function EditCommunity({community} : Props) {
-  const { name, description, image } = community
+  const { id, name, description, image } = community
 
   const methods = useForm({
     resolver: zodResolver(CommunitySchema),
@@ -25,7 +26,7 @@ export default function EditCommunity({community} : Props) {
   })
 
   const onSumbit = async (data: CommunityInput) => {
-    console.log(data)
+    await editCommunityAction(data, id)
   }
 
   return (

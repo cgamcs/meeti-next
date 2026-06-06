@@ -63,6 +63,10 @@ class CommunityService {
       }
     }
   }
+
+  async updateCommunity() {
+    console.log('desde update community')
+  }
 }
 
 export const communityService = new CommunityService(communityRepository)

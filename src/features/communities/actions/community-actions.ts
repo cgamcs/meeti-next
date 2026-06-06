@@ -28,3 +28,23 @@ export async function createCommunityAction(input: CommunityInput) {
     success: 'Comunidad creada correctamente'
   }
 }
+
+export async function editCommunityAction(input: CommunityInput, id: string) {
+  const data = CommunitySchema.safeParse(input)
+  if (!data.success) {
+    return {
+      error: 'Hubo un error',
+      success: ''
+    }
+  }
+
+  const { session } = await requireAuth()
+  if (!session) {
+    return {
+      error: 'Hubo un error',
+      success: ''
+    }
+  }
+
+  await communityService.updateCommunity()
+}
