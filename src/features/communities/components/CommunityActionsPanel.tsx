@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { CommunityPermissions } from "../types/community.types"
+import CommunityMembership from "./CommunityMembership"
 
 type Props = {
   permissions: CommunityPermissions
@@ -16,6 +17,13 @@ export default function CommunityActionsPanel({permissions, communityId}: Props)
           target="_blank"
         >Editar Comunidad</Link>
       )}
+
+      {permissions.canJoin || permissions.canLeave ? (
+        <CommunityMembership
+          permissions={permissions}
+          communityId={communityId}
+        />
+      ) : null}
     </div>
   )
 }
