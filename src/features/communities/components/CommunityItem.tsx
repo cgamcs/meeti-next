@@ -23,7 +23,7 @@ export default function CommunityItem({community} : CommunityItemProps) {
           />
         </div>
         <div className="min-w-0 flex-auto">
-          <Link href={`/communities/${id}`} target="_blank" className="hover:underline font-bold text-lg">
+          <Link href={`/dashboard/communities/${id}`} target="_blank" className="hover:underline font-bold text-lg">
             {name}
           </Link>
           <p className="text-gray-600 text-sm line-clamp-2">{description}</p>
