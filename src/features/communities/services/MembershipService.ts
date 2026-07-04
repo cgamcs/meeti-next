@@ -46,7 +46,7 @@ class MembershipService {
   }
 
   async getJoinedCommunities(user: User) {
-    await membershipRepository.findJoinedCommunities(user.id)
+    const result = await membershipRepository.findJoinedCommunities(user.id)
   }
 }
 
