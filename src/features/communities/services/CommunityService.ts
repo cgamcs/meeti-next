@@ -6,12 +6,13 @@ import { CommunityInput } from "../schemas/communitySchema";
 import { communityRepository, ICommunityRepository } from "./CommunityRepository";
 import { auth } from "@/src/lib/auth";
 import { headers } from "next/headers";
-import { success } from "zod";
 import { deleteUTFiles } from "@/src/lib/uploadthing-server";
+import { IMembershipRepository, membershipRepository } from "./MembershipRepository";
 
 class CommunityService {
   constructor(
-    private communityRepository: ICommunityRepository
+    private communityRepository: ICommunityRepository,
+    private membershipRepository: IMembershipRepository
   ){}
 
   async createCommunity(data: CommunityInput, userId: string) {
@@ -61,7 +62,7 @@ class CommunityService {
       }
     }
 
-    const isMember = false
+    const isMember = await this.membershipRepository.isMember(community.id, user.id)
     const isAdmin = CommunityPolicy.isAdmin(user, community)
 
     return {
@@ -119,4 +120,4 @@ class CommunityService {
   }
 }
 
-export const communityService = new CommunityService(communityRepository)
+export const communityService = new CommunityService(communityRepository, membershipRepository)

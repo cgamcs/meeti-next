@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { CommunityPermissions } from "../types/community.types"
 import { toggleMembershipAction } from "../actions/membership-actions"
+import toast from "react-hot-toast"
 
 type Props = {
   permissions: CommunityPermissions
@@ -14,7 +15,13 @@ export default function CommunityMembership({ permissions, communityId } : Props
   const [canLeave, setCanLeave] = useState(permissions.canLeave)
 
   const handleClick = async () => {
-    await toggleMembershipAction(communityId)
+    const result = await toggleMembershipAction(communityId)
+
+    if (result?.success) {
+      toast.success(result.message)
+      setCanJoin(result.newPermissions.canJoin)
+      setCanLeave(result.newPermissions.canLeave)
+    }
   }
 
   return (
@@ -28,7 +35,7 @@ export default function CommunityMembership({ permissions, communityId } : Props
 
       {canLeave && (
         <button
-          className="font-bold text-lg w-full lg:w-auto px-5 py-2 text-white rounded-lg cursor-pointer bg-red-600"
+          className="font-bold text-lg w-full lg:w-auto px-5 py-2 text-white rounded-lg cursor-pointer bg-red-500"
           onClick={handleClick}
         >Abandonar</button>
       )}
